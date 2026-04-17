@@ -10,17 +10,18 @@ tol = 1e-5;
 maxit = 2000;
 
 % Método de Gauss
-[A_tri1, b_tri1] = gauss(A,b);
+##[A_tri1, b_tri1] = gauss(A,b);
+[x] = gauss(A,b);
 
-disp("Matriz A_tri1:");
-disp(A_tri1);
-disp("Matriz b_tri1:");
-disp(b_tri1);
+##disp("Matriz A_tri1:");
+##disp(A_tri1);
+##disp("Matriz b_tri1:");
+##disp(b_tri1);
 
 
 % Resuelvo los sistemas con Sus_atras Ax = b
-x = sust_atras(A_tri1,b_tri1);
-disp("Sistema Resuelto por Gauss");
+##x = sust_atras(A_tri1,b_tri1);
+##disp("Sistema Resuelto por Gauss");
 disp(x);
 
 % Valor de x20
@@ -29,7 +30,7 @@ disp(x(20));
 
 % Métodos iterativos
 [X_JA, it_JA, rh_JA, t_JA] = jacobi(A, b, x0, maxit, tol);
-[X_GS, it_GS, rh_GS, t_GS] = gaussseidel(A, b, x0, maxit, tol);
+[X_GS, it_GS, rh_GS, t_GS] = gauss_seidel(A, b, x0, maxit, tol);
 [X_SOR, it_SOR, rh_SOR, t_SOR] = sor(A,b, x0, maxit, tol, w);
 
 % Mostrar resultados Jacobi

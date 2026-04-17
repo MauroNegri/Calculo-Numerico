@@ -19,7 +19,7 @@ function [x, it, r_h, t] = jacobi(A, b, x0, maxit, tol)
     %r_h(it+1) = norm(x-x0, 'inf');
 
     % Calcular absoluto
-    % r_h(it+1) = norm(x-x0, 'inf')
+##     r_h(it+1) = norm(x-x0, 'inf')
 
     % Calcular Residuo
     % r_h(it+1) = norm(A*x-b, 'inf') / norm(b, 'inf'); % NORMALIZADO Error Relativo del residuo
