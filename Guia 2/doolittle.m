@@ -1,4 +1,5 @@
 function [L,U] = doolittle(A)
+##function [A] = doolittle(A)
   n=length(A);
 
   for k=1:n-1

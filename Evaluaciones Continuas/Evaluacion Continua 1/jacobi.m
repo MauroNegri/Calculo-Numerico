@@ -16,10 +16,9 @@ function [x, it, r_h, t] = jacobi(A, b, x0, maxit, tol)
     r_h(it+1) = norm(x-x0, 'inf') / norm(x, 'inf'); % Norma Infinito
     % r_h(it+1) = norm(x-x0, 2) / norm(x, 2); % Norma 2 (Euclidiana)
     % r_h(it+1) = norm(x-x0, 1) / norm(x, 1); % Norma 1
-    %r_h(it+1) = norm(x-x0, 'inf');
 
-    % Calcular absoluto
-##     r_h(it+1) = norm(x-x0, 'inf')
+    % Calcular error absoluto
+##     r_h(it+1) = norm(x-x0, 'inf');
 
     % Calcular Residuo
     % r_h(it+1) = norm(A*x-b, 'inf') / norm(b, 'inf'); % NORMALIZADO Error Relativo del residuo
@@ -27,7 +26,7 @@ function [x, it, r_h, t] = jacobi(A, b, x0, maxit, tol)
 
     % Verificar convergencia
     if r_h(it+1) < tol
-      break
+      break;
     endif
     x0 = x;        % Actualizar x0 para la proxima iteracion
     it = it + 1;   % Contador de iteraciones

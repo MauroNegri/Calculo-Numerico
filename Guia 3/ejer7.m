@@ -2,7 +2,7 @@ n = 10;
 Bin =[ 0.25*ones(n,1), 0.5*ones(n,1), 2*ones(n,1), 0.5*ones(n,1), 0.25*ones(n,1)];
 d = [-4, -2, 0, 2, 4];
 A = spdiags(Bin, d, n, n);
-A = full(A);
+A = full(A)
 ##disp(eig(A));
 
 ## Con diag()
@@ -26,44 +26,44 @@ tol = 1e-5;
 maxit = 100;
 ##w_opt = 1.00621;
 
-##w_vals = linspace(0.01, 1.99, 100);
-##iters = zeros(size(w_vals));
-##
-##for j = 1:length(w_vals)
-##    [~, iters(j), ~] = sor(A, b, x0, maxit, tol, w_vals(j));
-##end
-##
-##[~, idx] = min(iters);
-##w_opt_num = w_vals(idx);
-##disp("w óptimo numérico:"); disp(w_opt_num)
-##
-### Evaluar w segun el libro
-##n = length(b);
-##w_vals = linspace(1.0, 1.99, 100);
-##tasa = zeros(size(w_vals));
-##
-##for j = 1:length(w_vals)
-##    x = x0;
-##    x0_ = x0;
-##    for it = 1:15  % solo 15 iteraciones
-##        % hacer una iteracion SOR manualmente
-##        for i = 1:n
-##            x(i) = (1-w_vals(j))*x0_(i) + w_vals(j)*(b(i) - A(i,1:i-1)*x(1:i-1) ...
-##                   - A(i,i+1:n)*x0_(i+1:n)) / A(i,i);
-##        end
-##        if it == 14
-##            diff_prev = norm(x - x0_, 'inf');
-##        end
-##        if it == 15
-##            diff_curr = norm(x - x0_, 'inf');
-##        end
-##        x0_ = x;
-##    end
-##    tasa(j) = diff_curr / diff_prev;  % cociente de reduccion
-##end
-##
-##[~, idx] = min(tasa);
-##disp("w óptimo metodo del libro:"); disp(w_vals(idx))
+w_vals = linspace(0.01, 1.99, 100);
+iters = zeros(size(w_vals));
+
+for j = 1:length(w_vals)
+    [~, iters(j), ~] = sor(A, b, x0, maxit, tol, w_vals(j));
+end
+
+[~, idx] = min(iters);
+w_opt_num = w_vals(idx);
+disp("w óptimo numérico:"); disp(w_opt_num)
+
+# Evaluar w segun el libro
+n = length(b);
+w_vals = linspace(1.0, 1.99, 100);
+tasa = zeros(size(w_vals));
+
+for j = 1:length(w_vals)
+    x = x0;
+    x0_ = x0;
+    for it = 1:15  % solo 15 iteraciones
+        % hacer una iteracion SOR manualmente
+        for i = 1:n
+            x(i) = (1-w_vals(j))*x0_(i) + w_vals(j)*(b(i) - A(i,1:i-1)*x(1:i-1) ...
+                   - A(i,i+1:n)*x0_(i+1:n)) / A(i,i);
+        end
+        if it == 14
+            diff_prev = norm(x - x0_, 'inf');
+        end
+        if it == 15
+            diff_curr = norm(x - x0_, 'inf');
+        end
+        x0_ = x;
+    end
+    tasa(j) = diff_curr / diff_prev;  % cociente de reduccion
+end
+
+[~, idx] = min(tasa);
+disp("w óptimo metodo del libro:"); disp(w_vals(idx))
 
 
 % Radios espectrales

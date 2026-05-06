@@ -1,6 +1,6 @@
 function [rhoA] = radio_espectral(A, metodo,w)
   % Descomponemos la matriz A para calcular la matriz
-  #[L D U] = DescomponerMatriz(A);
+##  [L D U] = DescomponerMatriz(A);
   n=length(A);
   v=diag(A);
   L=tril(A,-1);

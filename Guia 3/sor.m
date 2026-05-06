@@ -14,13 +14,12 @@ function [x, it, r_h, t] = sor(A, b, x0, maxit, tol, w)
       - A(i,i+1:n)*x0(i+1:n) ) / A(i,i);
     endfor
 
-    % Calcular el residuo (puede ser también el error relativo como en GS/Jacobi)
-     r_h(it + 1) = norm(x-x0, 'inf') / norm(x, 'inf'); % Norma Infinito
+    % Calcular el error relativo
+    r_h(it+1) = norm(x-x0, 'inf') / norm(x, 'inf'); % Norma Infinito
     % r_h(it+1) = norm(x-x0, 2) / norm(x, 2); % Norma 2 (Euclidiana)
     % r_h(it+1) = norm(x-x0, 1) / norm(x, 1); % Norma 1
-    %it = it + 1;
 
-        % Calcular error absoluto
+    # Calcular error absoluto
 ##     r_h(it+1) = norm(x-x0, 'inf');
 
     % Calcular Residuo
